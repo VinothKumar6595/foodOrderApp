@@ -10,14 +10,14 @@ const DUMMY_MEALS = [
   },
   {
     id: "m2",
-    name: "Schnitzel",
-    description: "A german specialty!",
+    name: "Fried-Noodles",
+    description: "A Chinese specialty!",
     price: 16.5,
   },
   {
     id: "m3",
-    name: "Barbecue Burger",
-    description: "American, raw, meaty",
+    name: "Chicken Kothu Parotta",
+    description: "Chettinad spicy",
     price: 12.99,
   },
   {
@@ -32,6 +32,7 @@ const AvailableMeals = () => {
   const mealsList = DUMMY_MEALS.map((meal) => {
     return (
       <MealItem
+        id={meal.id}
         key={meal.id}
         name={meal.name}
         description={meal.description}

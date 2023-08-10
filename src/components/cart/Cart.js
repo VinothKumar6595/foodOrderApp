@@ -7,14 +7,38 @@ const Cart = (props) => {
   const total = cartCntx.items.reduce((currentNum, item) => {
     return currentNum + Number(item.amount) * Number(item.price);
   }, 0);
+  const addToCartQty = (id) => {
+    const existingIndex = cartCntx.items.findIndex((item) => {
+      return id === item.id;
+    });
 
-  const cartAmount = {};
-  cartCntx.items.forEach((item) => {
-    cartAmount[item.id] = (cartAmount[item.id] || 0) + Number(item.amount);
-  });
+    const existingItem = cartCntx.items[existingIndex];
 
-  console.log(cartAmount);
+    let updatedItem;
+    if (existingItem) {
+      updatedItem = {
+        ...existingItem,
+        amount: "1",
+      };
+      cartCntx.addItem(updatedItem);
+    }
+  };
+  const removeFromCartQty = (id) => {
+    const existingIndex = cartCntx.items.findIndex((item) => {
+      return id === item.id;
+    });
 
+    const existingItem = cartCntx.items[existingIndex];
+
+    let updatedItem;
+    if (existingItem) {
+      updatedItem = {
+        ...existingItem,
+        amount: "1",
+      };
+      cartCntx.removeItem(updatedItem);
+    }
+  };
   const CartItems = (
     <ul className={classes["cart-items"]}>
       {cartCntx.items.map((item) => {
@@ -30,8 +54,8 @@ const Cart = (props) => {
               </div>
             </div>
             <div className={classes.actions1}>
-              <button>-</button>
-              <button>+</button>
+              <button onClick={() => removeFromCartQty(item.id)}>-</button>
+              <button onClick={() => addToCartQty(item.id)}>+</button>
             </div>
           </li>
         );

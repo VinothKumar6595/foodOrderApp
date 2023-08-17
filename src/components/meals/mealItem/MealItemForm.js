@@ -5,9 +5,11 @@ import classes from "./MealItemForm.module.css";
 
 const MealItemForm = (props) => {
   const [cartQty, setCartQty] = useState("1");
+
   const inputChangeHandler = (event) => {
     setCartQty(event.target.value);
   };
+
   const CartCtx = useContext(CartContext);
   const addToCart = (event) => {
     event.preventDefault();
